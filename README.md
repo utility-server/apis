@@ -21,7 +21,7 @@ This folder contains comprehensive API documentation for Utility Server's servic
 
 ## Available Documentation
 
-### [API_DOCUMENTATION.md](https://apis.utility-server.com/API_DOCUMENTATION.md)
+### [API_DOCUMENTATION.md](https://apis.utility-server.com/API_DOCUMENTATION.html)
 
 Complete API reference for the TTS Utility Server, including:
 
@@ -170,17 +170,17 @@ curl -X POST "https://prod.services.utility-server.com/www.example.com/customers
 
 **Current API Version**: 4.21.04  
 **Last Updated**: November 6, 2025  
-**Breaking Changes**: See [CHANGELOG](../CHANGELOG.md) if available
+**Breaking Changes**: See [CHANGELOG](../CHANGELOG.html) if available
 
 ---
 
 ## Legal
 
 API usage is subject to:
-- [Terms and Conditions](https://documents.utility-server.com/TERMS_AND_CONDITIONS.md)
-- [Privacy Policy](https://documents.utility-server.com/PRIVACY_POLICY.md)
-- [Service Level Agreement](https://documents.utility-server.com/SLA.md)
-- [Disclaimer](https://documents.utility-server.com/DISCLAIMER.md)
+- [Terms and Conditions](https://documents.utility-server.com/TERMS_AND_CONDITIONS.html)
+- [Privacy Policy](https://documents.utility-server.com/PRIVACY_POLICY.html)
+- [Service Level Agreement](https://documents.utility-server.com/SLA.html)
+- [Disclaimer](https://documents.utility-server.com/DISCLAIMER.html)
 
 For legal inquiries: legal@utility-server.com
 
