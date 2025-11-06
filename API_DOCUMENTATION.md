@@ -1,8 +1,7 @@
-Now I'll create a professional, standard API documentation that can be published publicly:
-Action: file_editor create /app/API_DOCUMENTATION.md --file-text "# TTS Utility Server API Documentation
+# TTS Utility Server API Documentation
 
 ## Version: 4.21.04
-**Last Updated:** December 2024
+**Last Updated:** November 6, 2025
 
 ---
 
@@ -57,19 +56,19 @@ To use the API, you need:
 ### Quick Start Example
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/your-identifier/customers/member_login\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
+curl -X POST "https://prod.services.utility-server.com/your-identifier/customers/member_login" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
   -d '{
-    \"email_id\": \"user@example.com\",
-    \"password\": \"your_password\",
-    \"identifire\": \"your-identifier\",
-    \"client_ver\": \"V4.21.04\",
-    \"ip_address\": \"192.168.1.1\",
-    \"mac_address\": \"-\",
-    \"checksum\": \"generated_checksum_value\",
-    \"secret\": \"YOUR_SECRET_KEY\"
+    "email_id": "user@example.com",
+    "password": "your_password",
+    "identifire": "your-identifier",
+    "client_ver": "V4.21.04",
+    "ip_address": "192.168.1.1",
+    "mac_address": "-",
+    "checksum": "generated_checksum_value",
+    "secret": "YOUR_SECRET_KEY"
   }'
 ```
 
@@ -169,44 +168,44 @@ Authenticate a user and create a new session.
 **Example Request (JSON):**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/member_login\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/505.EXAMPLE.PROD/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"x-tts-module: SPIDER\" \
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/member_login" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/505.EXAMPLE.PROD/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "x-tts-module: SPIDER" \
   -d '{
-    \"email_id\": \"user@example.com\",
-    \"password\": \"secure_password\",
-    \"identifire\": \"www.example.com\",
-    \"secret\": \"YOUR_SECRET_KEY\",
-    \"client_ver\": \"V4.21.04\",
-    \"checksum\": \"generated_checksum_hash\",
-    \"ip_address\": \"192.168.1.100\",
-    \"mac_address\": \"-\"
+    "email_id": "user@example.com",
+    "password": "secure_password",
+    "identifire": "www.example.com",
+    "secret": "YOUR_SECRET_KEY",
+    "client_ver": "V4.21.04",
+    "checksum": "generated_checksum_hash",
+    "ip_address": "192.168.1.100",
+    "mac_address": "-"
   }'
 ```
 
 **Example Request (Form Data):**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/member_login\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  --data-urlencode \"email_id=user@example.com\" \
-  --data-urlencode \"password=secure_password\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"secret=YOUR_SECRET_KEY\" \
-  --data-urlencode \"client_ver=V4.21.04\"
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/member_login" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  --data-urlencode "email_id=user@example.com" \
+  --data-urlencode "password=secure_password" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "secret=YOUR_SECRET_KEY" \
+  --data-urlencode "client_ver=V4.21.04"
 ```
 
 **Success Response:**
 
 ```json
 {
-  \"session_id\": \"zO4WlLQLT8fj4rakFbnvX~u92nq4A-fO\",
-  \"user_type\": \"client\",
-  \"message\": \"Logged-in successful, inactive session time-out is 43200 minutes.\"
+  "session_id": "zO4WlLQLT8fj4rakFbnvX~u92nq4A-fO",
+  "user_type": "client",
+  "message": "Logged-in successful, inactive session time-out is 43200 minutes."
 }
 ```
 
@@ -236,13 +235,13 @@ Reset a user's password. A new password will be emailed to the registered email 
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/reset_password\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  --data-urlencode \"email_id=user@example.com\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\"
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/reset_password" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  --data-urlencode "email_id=user@example.com" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04"
 ```
 
 **Success Response:**
@@ -272,14 +271,14 @@ Forcefully terminate an active user session.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/terminate_session\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  --data-urlencode \"email_id=user@example.com\" \
-  --data-urlencode \"password=secure_password\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\"
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/terminate_session" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  --data-urlencode "email_id=user@example.com" \
+  --data-urlencode "password=secure_password" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04"
 ```
 
 **Success Response:**
@@ -311,14 +310,14 @@ Logout the current user session.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/member_logout\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"session-id: zO4WlLQLT8fj4rakFbnvX~u92nq4A-fO\" \
-  -H \"member-email: user@example.com\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\"
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/member_logout" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "session-id: zO4WlLQLT8fj4rakFbnvX~u92nq4A-fO" \
+  -H "member-email: user@example.com" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04"
 ```
 
 **Success Response:**
@@ -352,14 +351,14 @@ Retrieve user information for the authenticated session.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/get_users\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"session-id: zO4WlLQLT8fj4rakFbnvX~u92nq4A-fO\" \
-  -H \"member-email: user@example.com\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\"
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/get_users" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "session-id: zO4WlLQLT8fj4rakFbnvX~u92nq4A-fO" \
+  -H "member-email: user@example.com" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04"
 ```
 
 **Success Response:**
@@ -395,19 +394,19 @@ Generate a new access key and invalidate the current one.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/rotate_access_key\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/rotate_access_key" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-module: SPIDER" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
   -d '{
-    \"identifire\": \"www.example.com\",
-    \"client_ver\": \"V4.21.04\",
-    \"checksum\": \"generated_checksum_hash\",
-    \"ip_address\": \"192.168.1.100\",
-    \"mac_address\": \"-\",
-    \"secret\": \"\"
+    "identifire": "www.example.com",
+    "client_ver": "V4.21.04",
+    "checksum": "generated_checksum_hash",
+    "ip_address": "192.168.1.100",
+    "mac_address": "-",
+    "secret": ""
   }'
 ```
 
@@ -443,20 +442,20 @@ Update to a specific access key.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/push_access_key\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/push_access_key" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-module: SPIDER" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
   -d '{
-    \"identifire\": \"www.example.com\",
-    \"client_ver\": \"V4.21.04\",
-    \"checksum\": \"generated_checksum_hash\",
-    \"ip_address\": \"192.168.1.100\",
-    \"mac_address\": \"-\",
-    \"new_access_key\": \"NEW_ACCESS_KEY_VALUE\",
-    \"secret\": \"\"
+    "identifire": "www.example.com",
+    "client_ver": "V4.21.04",
+    "checksum": "generated_checksum_hash",
+    "ip_address": "192.168.1.100",
+    "mac_address": "-",
+    "new_access_key": "NEW_ACCESS_KEY_VALUE",
+    "secret": ""
   }'
 ```
 
@@ -492,20 +491,20 @@ Generate a new secret key and invalidate the current one.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/rotate_secret_key\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_CURRENT_ACCESS_KEY\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/rotate_secret_key" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_CURRENT_ACCESS_KEY" \
+  -H "x-tts-module: SPIDER" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
   -d '{
-    \"identifire\": \"www.example.com\",
-    \"client_ver\": \"V4.21.04\",
-    \"checksum\": \"generated_checksum_hash\",
-    \"ip_address\": \"192.168.1.100\",
-    \"mac_address\": \"-\",
-    \"secret\": \"\"
+    "identifire": "www.example.com",
+    "client_ver": "V4.21.04",
+    "checksum": "generated_checksum_hash",
+    "ip_address": "192.168.1.100",
+    "mac_address": "-",
+    "secret": ""
   }'
 ```
 
@@ -542,21 +541,21 @@ Update to a specific secret key.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/push_secret_key\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_CURRENT_ACCESS_KEY\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/push_secret_key" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_CURRENT_ACCESS_KEY" \
+  -H "x-tts-module: SPIDER" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
   -d '{
-    \"identifire\": \"www.example.com\",
-    \"client_ver\": \"V4.21.04\",
-    \"checksum\": \"generated_checksum_hash\",
-    \"ip_address\": \"192.168.1.100\",
-    \"mac_address\": \"-\",
-    \"new_secret_key\": \"NEW_SECRET_KEY_VALUE\",
-    \"secret\": \"\"
+    "identifire": "www.example.com",
+    "client_ver": "V4.21.04",
+    "checksum": "generated_checksum_hash",
+    "ip_address": "192.168.1.100",
+    "mac_address": "-",
+    "new_secret_key": "NEW_SECRET_KEY_VALUE",
+    "secret": ""
   }'
 ```
 
@@ -599,24 +598,24 @@ Retrieve real-time logs with optional filtering.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
+curl -X POST "https://prod.services.utility-server.com/www.example.com" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "x-tts-module: SPIDER" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
   -d '{
-    \"action\": \"liveLogs\",
-    \"identifire\": \"www.example.com\",
-    \"client_ver\": \"V4.21.04\",
-    \"checksum\": \"generated_checksum_hash\",
-    \"ip_address\": \"192.168.1.100\",
-    \"mac_address\": \"-\",
-    \"secret\": \"YOUR_SECRET_KEY\",
-    \"lastId\": \"\",
-    \"output\": \"json\",
-    \"limit\": 50
+    "action": "liveLogs",
+    "identifire": "www.example.com",
+    "client_ver": "V4.21.04",
+    "checksum": "generated_checksum_hash",
+    "ip_address": "192.168.1.100",
+    "mac_address": "-",
+    "secret": "YOUR_SECRET_KEY",
+    "lastId": "",
+    "output": "json",
+    "limit": 50
   }'
 ```
 
@@ -653,23 +652,23 @@ Retrieve logs for a specific date.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
+curl -X POST "https://prod.services.utility-server.com/www.example.com" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "x-tts-module: SPIDER" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
   -d '{
-    \"action\": \"hitLog\",
-    \"identifire\": \"www.example.com\",
-    \"client_ver\": \"V4.21.04\",
-    \"checksum\": \"generated_checksum_hash\",
-    \"ip_address\": \"192.168.1.100\",
-    \"mac_address\": \"-\",
-    \"logDate\": \"2025-01-15\",
-    \"output\": \"json\",
-    \"secret\": \"YOUR_SECRET_KEY\"
+    "action": "hitLog",
+    "identifire": "www.example.com",
+    "client_ver": "V4.21.04",
+    "checksum": "generated_checksum_hash",
+    "ip_address": "192.168.1.100",
+    "mac_address": "-",
+    "logDate": "2025-01-15",
+    "output": "json",
+    "secret": "YOUR_SECRET_KEY"
   }'
 ```
 
@@ -712,46 +711,46 @@ Retrieve usage statistics by month or specific date.
 **Example Request (Monthly Stats):**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
+curl -X POST "https://prod.services.utility-server.com/www.example.com" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "x-tts-module: SPIDER" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
   -d '{
-    \"action\": \"fetchStats\",
-    \"identifire\": \"www.example.com\",
-    \"client_ver\": \"V4.21.04\",
-    \"checksum\": \"generated_checksum_hash\",
-    \"ip_address\": \"192.168.1.100\",
-    \"mac_address\": \"-\",
-    \"month\": \"2025-01\",
-    \"output\": \"json\",
-    \"secret\": \"YOUR_SECRET_KEY\"
+    "action": "fetchStats",
+    "identifire": "www.example.com",
+    "client_ver": "V4.21.04",
+    "checksum": "generated_checksum_hash",
+    "ip_address": "192.168.1.100",
+    "mac_address": "-",
+    "month": "2025-01",
+    "output": "json",
+    "secret": "YOUR_SECRET_KEY"
   }'
 ```
 
 **Example Request (Daily Stats):**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
+curl -X POST "https://prod.services.utility-server.com/www.example.com" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "x-tts-module: SPIDER" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
   -d '{
-    \"action\": \"fetchStats\",
-    \"identifire\": \"www.example.com\",
-    \"client_ver\": \"V4.21.04\",
-    \"checksum\": \"generated_checksum_hash\",
-    \"ip_address\": \"192.168.1.100\",
-    \"mac_address\": \"-\",
-    \"date\": \"2025-01-15\",
-    \"output\": \"json\",
-    \"secret\": \"YOUR_SECRET_KEY\"
+    "action": "fetchStats",
+    "identifire": "www.example.com",
+    "client_ver": "V4.21.04",
+    "checksum": "generated_checksum_hash",
+    "ip_address": "192.168.1.100",
+    "mac_address": "-",
+    "date": "2025-01-15",
+    "output": "json",
+    "secret": "YOUR_SECRET_KEY"
   }'
 ```
 
@@ -786,16 +785,16 @@ Remove cached content for a specific URL.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/https://www.example.com/products/item-123\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
-  --data-urlencode \"action=deleteCache\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\"
+curl -X POST "https://prod.services.utility-server.com/https://www.example.com/products/item-123" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-module: SPIDER" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
+  --data-urlencode "action=deleteCache" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04"
 ```
 
 **Success Response:**
@@ -827,16 +826,16 @@ Clear all cached content for the domain.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/https://www.example.com\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
-  --data-urlencode \"action=purge\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\"
+curl -X POST "https://prod.services.utility-server.com/https://www.example.com" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-module: SPIDER" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
+  --data-urlencode "action=purge" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04"
 ```
 
 **Success Response:**
@@ -868,16 +867,16 @@ Retrieve customer order information.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/https://www.example.com\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
-  --data-urlencode \"action=fetchCustomerOrders\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\"
+curl -X POST "https://prod.services.utility-server.com/https://www.example.com" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-module: SPIDER" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
+  --data-urlencode "action=fetchCustomerOrders" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04"
 ```
 
 **Success Response:**
@@ -909,16 +908,16 @@ Check the status of cache warmup operations.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/https://www.example.com\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
-  --data-urlencode \"action=getWarmupCacheStatus\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\"
+curl -X POST "https://prod.services.utility-server.com/https://www.example.com" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-module: SPIDER" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
+  --data-urlencode "action=getWarmupCacheStatus" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04"
 ```
 
 **Success Response:**
@@ -942,9 +941,9 @@ Check the health and availability of a cached URL.
 **Example Request:**
 
 ```bash
-curl -I \"https://spider.services.utility-server.com/https://www.example.com/products\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"x-no-cache: TRUE\"
+curl -I "https://spider.services.utility-server.com/https://www.example.com/products" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "x-no-cache: TRUE"
 ```
 
 **Success Response:**
@@ -978,16 +977,16 @@ Register a new sitemap XML file.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
-  --data-urlencode \"action=addSitemap\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\" \
-  --data-urlencode \"sitemap=https://www.example.com/sitemap.xml\"
+curl -X POST "https://prod.services.utility-server.com/www.example.com" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
+  --data-urlencode "action=addSitemap" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04" \
+  --data-urlencode "sitemap=https://www.example.com/sitemap.xml"
 ```
 
 **Success Response:**
@@ -1019,16 +1018,16 @@ Update or replace an existing sitemap.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
-  --data-urlencode \"action=updateSitemap\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\" \
-  --data-urlencode \"sitemap=https://www.example.com/sitemap-updated.xml\"
+curl -X POST "https://prod.services.utility-server.com/www.example.com" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
+  --data-urlencode "action=updateSitemap" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04" \
+  --data-urlencode "sitemap=https://www.example.com/sitemap-updated.xml"
 ```
 
 **Success Response:**
@@ -1060,16 +1059,16 @@ Set cache expiration time.
 **Example Request:**
 
 ```bash
-curl -X POST \"https://prod.services.utility-server.com/www.example.com\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
-  --data-urlencode \"action=updateTTL\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\" \
-  --data-urlencode \"ttl=60\"
+curl -X POST "https://prod.services.utility-server.com/www.example.com" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
+  --data-urlencode "action=updateTTL" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04" \
+  --data-urlencode "ttl=60"
 ```
 
 **Success Response:**
@@ -1214,7 +1213,7 @@ When rate limit is exceeded (HTTP 429), wait for the time specified in the `Retr
 ### Documentation
 
 - **API Version**: 4.21.04
-- **Last Updated**: December 2024
+- **Last Updated**: November 6, 2025
 - **Status Page**: https://status.utility-server.com
 
 ### Contact
@@ -1250,85 +1249,85 @@ For technical support, integration assistance, or to report issues:
 
 ```bash
 # Step 1: Login
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/member_login\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/member_login" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
   -d '{
-    \"email_id\": \"user@example.com\",
-    \"password\": \"secure_password\",
-    \"identifire\": \"www.example.com\",
-    \"client_ver\": \"V4.21.04\",
-    \"checksum\": \"generated_checksum\",
-    \"ip_address\": \"192.168.1.100\",
-    \"mac_address\": \"-\",
-    \"secret\": \"YOUR_SECRET_KEY\"
+    "email_id": "user@example.com",
+    "password": "secure_password",
+    "identifire": "www.example.com",
+    "client_ver": "V4.21.04",
+    "checksum": "generated_checksum",
+    "ip_address": "192.168.1.100",
+    "mac_address": "-",
+    "secret": "YOUR_SECRET_KEY"
   }'
 
-# Response: {\"session_id\":\"abc123\",\"user_type\":\"client\",\"message\":\"Logged-in successful...\"}
+# Response: {"session_id":"abc123","user_type":"client","message":"Logged-in successful..."}
 
 # Step 2: Use authenticated endpoint
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/get_users\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"session-id: abc123\" \
-  -H \"member-email: user@example.com\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\"
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/get_users" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "session-id: abc123" \
+  -H "member-email: user@example.com" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04"
 
 # Step 3: Logout
-curl -X POST \"https://prod.services.utility-server.com/www.example.com/customers/member_logout\" \
-  -H \"Content-Type: application/x-www-form-urlencoded\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"session-id: abc123\" \
-  -H \"member-email: user@example.com\" \
-  --data-urlencode \"identifire=www.example.com\" \
-  --data-urlencode \"client_ver=V4.21.04\"
+curl -X POST "https://prod.services.utility-server.com/www.example.com/customers/member_logout" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "session-id: abc123" \
+  -H "member-email: user@example.com" \
+  --data-urlencode "identifire=www.example.com" \
+  --data-urlencode "client_ver=V4.21.04"
 ```
 
 ### Example: Monitoring and Analytics Flow
 
 ```bash
 # Fetch live logs
-curl -X POST \"https://prod.services.utility-server.com/www.example.com\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
+curl -X POST "https://prod.services.utility-server.com/www.example.com" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "x-tts-module: SPIDER" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
   -d '{
-    \"action\": \"liveLogs\",
-    \"identifire\": \"www.example.com\",
-    \"client_ver\": \"V4.21.04\",
-    \"checksum\": \"generated_checksum\",
-    \"ip_address\": \"192.168.1.100\",
-    \"mac_address\": \"-\",
-    \"output\": \"json\",
-    \"limit\": 50,
-    \"secret\": \"YOUR_SECRET_KEY\"
+    "action": "liveLogs",
+    "identifire": "www.example.com",
+    "client_ver": "V4.21.04",
+    "checksum": "generated_checksum",
+    "ip_address": "192.168.1.100",
+    "mac_address": "-",
+    "output": "json",
+    "limit": 50,
+    "secret": "YOUR_SECRET_KEY"
   }'
 
 # Fetch monthly statistics
-curl -X POST \"https://prod.services.utility-server.com/www.example.com\" \
-  -H \"Content-Type: application/json\" \
-  -H \"User-Agent: TTS-Utility-Client/V4.21.04\" \
-  -H \"x-tts-cc-access-key: YOUR_ACCESS_KEY\" \
-  -H \"x-tts-module: SPIDER\" \
-  -H \"session-id: YOUR_SESSION_ID\" \
-  -H \"member-email: user@example.com\" \
+curl -X POST "https://prod.services.utility-server.com/www.example.com" \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: TTS-Utility-Client/V4.21.04" \
+  -H "x-tts-cc-access-key: YOUR_ACCESS_KEY" \
+  -H "x-tts-module: SPIDER" \
+  -H "session-id: YOUR_SESSION_ID" \
+  -H "member-email: user@example.com" \
   -d '{
-    \"action\": \"fetchStats\",
-    \"identifire\": \"www.example.com\",
-    \"client_ver\": \"V4.21.04\",
-    \"checksum\": \"generated_checksum\",
-    \"ip_address\": \"192.168.1.100\",
-    \"mac_address\": \"-\",
-    \"month\": \"2025-01\",
-    \"output\": \"json\",
-    \"secret\": \"YOUR_SECRET_KEY\"
+    "action": "fetchStats",
+    "identifire": "www.example.com",
+    "client_ver": "V4.21.04",
+    "checksum": "generated_checksum",
+    "ip_address": "192.168.1.100",
+    "mac_address": "-",
+    "month": "2025-01",
+    "output": "json",
+    "secret": "YOUR_SECRET_KEY"
   }'
 ```
 
@@ -1337,5 +1336,3 @@ curl -X POST \"https://prod.services.utility-server.com/www.example.com\" \
 **End of Documentation**
 
 © 2024 TTS Utility Server. All rights reserved.
-"
-Observation: Create successful: /app/API_DOCUMENTATION.md
