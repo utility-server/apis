@@ -2,6 +2,12 @@
   <img src="https://customer-assets.emergentagent.com/job_api-legal-hub/artifacts/1fjsrc03_logo-4X.png" alt="Utility Server Logo" width="200"/>
 </p>
 
+---
+
+**Navigation:** [🏠 Home](https://apis.utility-server.com/) | [📖 API Reference](https://apis.utility-server.com/API_DOCUMENTATION.html) | [⚖️ Legal Docs](https://documents.utility-server.com/) | [🌐 Website](https://www.dnsstack.com)
+
+---
+
 # API Documentation
 
 **Utility Server API Documentation**
@@ -21,7 +27,7 @@ This folder contains comprehensive API documentation for Utility Server's servic
 
 ## Available Documentation
 
-### [API_DOCUMENTATION.md](https://apis.utility-server.com/API_DOCUMENTATION.html)
+### [API Documentation](https://apis.utility-server.com/API_DOCUMENTATION.html)
 
 Complete API reference for the TTS Utility Server, including:
 
@@ -170,7 +176,7 @@ curl -X POST "https://prod.services.utility-server.com/www.example.com/customers
 
 **Current API Version**: 4.21.04  
 **Last Updated**: November 6, 2025  
-**Breaking Changes**: See [CHANGELOG](../CHANGELOG.html) if available
+**Breaking Changes**: See CHANGELOG if available
 
 ---
 

@@ -2,6 +2,12 @@
   <img src="https://customer-assets.emergentagent.com/job_api-legal-hub/artifacts/1fjsrc03_logo-4X.png" alt="Utility Server Logo" width="200"/>
 </p>
 
+---
+
+**Navigation:** [🏠 API Home](https://apis.utility-server.com/) | [📖 API Reference](https://apis.utility-server.com/API_DOCUMENTATION.html) | [⚖️ Legal Docs](https://documents.utility-server.com/) | [🌐 Website](https://www.dnsstack.com)
+
+---
+
 # TTS Utility Server API Documentation
 
 ## Version: 4.21.04
