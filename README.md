@@ -173,10 +173,10 @@ curl -X POST "https://prod.services.utility-server.com/www.example.com/customers
 ## Legal
 
 API usage is subject to:
-- [Terms and Conditions](../legal-documents/TERMS_AND_CONDITIONS.md)
-- [Privacy Policy](../legal-documents/PRIVACY_POLICY.md)
-- [Service Level Agreement](../legal-documents/SLA.md)
-- [Disclaimer](../legal-documents/DISCLAIMER.md)
+- [Terms and Conditions](https://documents.utility-server.com/TERMS_AND_CONDITIONS.html)
+- [Privacy Policy](https://documents.utility-server.com/PRIVACY_POLICY.html)
+- [Service Level Agreement](https://documents.utility-server.com/SLA.html)
+- [Disclaimer](https://documents.utility-server.com/DISCLAIMER.html)
 
 For legal inquiries: legal@utility-server.com
 
