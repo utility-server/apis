@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://customer-assets.emergentagent.com/job_api-legal-hub/artifacts/1fjsrc03_logo-4X.png" alt="Utility Server Logo" width="200"/>
+</p>
+
 # API Documentation
 
 **Utility Server API Documentation**
@@ -17,7 +21,7 @@ This folder contains comprehensive API documentation for Utility Server's servic
 
 ## Available Documentation
 
-### [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)
+### [API_DOCUMENTATION.md](https://apis.utility-server.com/API_DOCUMENTATION.md)
 
 Complete API reference for the TTS Utility Server, including:
 
@@ -173,10 +177,10 @@ curl -X POST "https://prod.services.utility-server.com/www.example.com/customers
 ## Legal
 
 API usage is subject to:
-- [Terms and Conditions](https://documents.utility-server.com/TERMS_AND_CONDITIONS.html)
-- [Privacy Policy](https://documents.utility-server.com/PRIVACY_POLICY.html)
-- [Service Level Agreement](https://documents.utility-server.com/SLA.html)
-- [Disclaimer](https://documents.utility-server.com/DISCLAIMER.html)
+- [Terms and Conditions](https://documents.utility-server.com/TERMS_AND_CONDITIONS.md)
+- [Privacy Policy](https://documents.utility-server.com/PRIVACY_POLICY.md)
+- [Service Level Agreement](https://documents.utility-server.com/SLA.md)
+- [Disclaimer](https://documents.utility-server.com/DISCLAIMER.md)
 
 For legal inquiries: legal@utility-server.com
 
