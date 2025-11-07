@@ -1,0 +1,1101 @@
+{
+  "info": {
+    "name": "TTS Utility Server API",
+    "_postman_id": "utility-server-api-v4.21.04",
+    "description": "Complete API collection for Utility Server's web performance optimization services.\n\n**Product of DNS Stack Private Limited**\n- Website: https://www.dnsstack.com\n- Documentation: https://apis.utility-server.com/\n- Legal: https://documents.utility-server.com/\n\n**Version:** 4.21.04",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{access_key}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "x-tts-cc-access-key",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://prod.services.utility-server.com",
+      "type": "string"
+    },
+    {
+      "key": "identifire",
+      "value": "www.example.com",
+      "type": "string"
+    },
+    {
+      "key": "access_key",
+      "value": "YOUR_ACCESS_KEY",
+      "type": "string"
+    },
+    {
+      "key": "secret_key",
+      "value": "YOUR_SECRET_KEY",
+      "type": "string"
+    },
+    {
+      "key": "client_ver",
+      "value": "V4.21.04",
+      "type": "string"
+    },
+    {
+      "key": "session_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "member_email",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication & Session Management",
+      "item": [
+        {
+          "name": "Member Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.session_id) {",
+                  "        pm.collectionVariables.set('session_id', response.session_id);",
+                  "        console.log('Session ID saved:', response.session_id);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email_id\": \"user@example.com\",\n  \"password\": \"secure_password\",\n  \"identifire\": \"{{identifire}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"client_ver\": \"{{client_ver}}\",\n  \"checksum\": \"generated_checksum_hash\",\n  \"ip_address\": \"192.168.1.100\",\n  \"mac_address\": \"-\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}/customers/member_login",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}", "customers", "member_login"]
+            },
+            "description": "Authenticate a user and create a new session. Session ID is automatically saved to collection variables."
+          },
+          "response": []
+        },
+        {
+          "name": "Member Login (Form Data)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "email_id",
+                  "value": "user@example.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "secure_password",
+                  "type": "text"
+                },
+                {
+                  "key": "identifire",
+                  "value": "{{identifire}}",
+                  "type": "text"
+                },
+                {
+                  "key": "secret",
+                  "value": "{{secret_key}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_ver",
+                  "value": "{{client_ver}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}/customers/member_login",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}", "customers", "member_login"]
+            },
+            "description": "Alternative login method using form-urlencoded data"
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "email_id",
+                  "value": "user@example.com",
+                  "type": "text"
+                },
+                {
+                  "key": "identifire",
+                  "value": "{{identifire}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_ver",
+                  "value": "{{client_ver}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}/customers/reset_password",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}", "customers", "reset_password"]
+            },
+            "description": "Reset user password and send new password via email"
+          },
+          "response": []
+        },
+        {
+          "name": "Terminate Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "email_id",
+                  "value": "user@example.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "secure_password",
+                  "type": "text"
+                },
+                {
+                  "key": "identifire",
+                  "value": "{{identifire}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_ver",
+                  "value": "{{client_ver}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}/customers/terminate_session",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}", "customers", "terminate_session"]
+            },
+            "description": "Forcefully terminate an active user session"
+          },
+          "response": []
+        },
+        {
+          "name": "Member Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "identifire",
+                  "value": "{{identifire}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_ver",
+                  "value": "{{client_ver}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}/customers/member_logout",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}", "customers", "member_logout"]
+            },
+            "description": "Logout the current user session"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User Management",
+      "item": [
+        {
+          "name": "Get Users",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "identifire",
+                  "value": "{{identifire}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_ver",
+                  "value": "{{client_ver}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}/customers/get_users",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}", "customers", "get_users"]
+            },
+            "description": "Retrieve user information for authenticated session"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Key Management",
+      "item": [
+        {
+          "name": "Rotate Access Key",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifire\": \"{{identifire}}\",\n  \"client_ver\": \"{{client_ver}}\",\n  \"checksum\": \"generated_checksum_hash\",\n  \"ip_address\": \"192.168.1.100\",\n  \"mac_address\": \"-\",\n  \"secret\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}/customers/rotate_access_key",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}", "customers", "rotate_access_key"]
+            },
+            "description": "Generate new access key and invalidate current one"
+          },
+          "response": []
+        },
+        {
+          "name": "Push Access Key",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifire\": \"{{identifire}}\",\n  \"client_ver\": \"{{client_ver}}\",\n  \"checksum\": \"generated_checksum_hash\",\n  \"ip_address\": \"192.168.1.100\",\n  \"mac_address\": \"-\",\n  \"new_access_key\": \"NEW_ACCESS_KEY_VALUE\",\n  \"secret\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}/customers/push_access_key",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}", "customers", "push_access_key"]
+            },
+            "description": "Update to a specific access key"
+          },
+          "response": []
+        },
+        {
+          "name": "Rotate Secret Key",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifire\": \"{{identifire}}\",\n  \"client_ver\": \"{{client_ver}}\",\n  \"checksum\": \"generated_checksum_hash\",\n  \"ip_address\": \"192.168.1.100\",\n  \"mac_address\": \"-\",\n  \"secret\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}/customers/rotate_secret_key",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}", "customers", "rotate_secret_key"]
+            },
+            "description": "Generate new secret key and invalidate current one"
+          },
+          "response": []
+        },
+        {
+          "name": "Push Secret Key",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifire\": \"{{identifire}}\",\n  \"client_ver\": \"{{client_ver}}\",\n  \"checksum\": \"generated_checksum_hash\",\n  \"ip_address\": \"192.168.1.100\",\n  \"mac_address\": \"-\",\n  \"new_secret_key\": \"NEW_SECRET_KEY_VALUE\",\n  \"secret\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}/customers/push_secret_key",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}", "customers", "push_secret_key"]
+            },
+            "description": "Update to a specific secret key"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Logging & Monitoring",
+      "item": [
+        {
+          "name": "Live Logs",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"liveLogs\",\n  \"identifire\": \"{{identifire}}\",\n  \"client_ver\": \"{{client_ver}}\",\n  \"checksum\": \"generated_checksum_hash\",\n  \"ip_address\": \"192.168.1.100\",\n  \"mac_address\": \"-\",\n  \"secret\": \"{{secret_key}}\",\n  \"lastId\": \"\",\n  \"output\": \"json\",\n  \"limit\": 50\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}"]
+            },
+            "description": "Retrieve real-time logs with optional filtering"
+          },
+          "response": []
+        },
+        {
+          "name": "Hit Log",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"hitLog\",\n  \"identifire\": \"{{identifire}}\",\n  \"client_ver\": \"{{client_ver}}\",\n  \"checksum\": \"generated_checksum_hash\",\n  \"ip_address\": \"192.168.1.100\",\n  \"mac_address\": \"-\",\n  \"logDate\": \"2025-01-15\",\n  \"output\": \"json\",\n  \"secret\": \"{{secret_key}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}"]
+            },
+            "description": "Retrieve logs for a specific date"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Statistics",
+      "item": [
+        {
+          "name": "Fetch Stats (Monthly)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"fetchStats\",\n  \"identifire\": \"{{identifire}}\",\n  \"client_ver\": \"{{client_ver}}\",\n  \"checksum\": \"generated_checksum_hash\",\n  \"ip_address\": \"192.168.1.100\",\n  \"mac_address\": \"-\",\n  \"month\": \"2025-01\",\n  \"output\": \"json\",\n  \"secret\": \"{{secret_key}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}"]
+            },
+            "description": "Retrieve monthly usage statistics"
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Stats (Daily)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"fetchStats\",\n  \"identifire\": \"{{identifire}}\",\n  \"client_ver\": \"{{client_ver}}\",\n  \"checksum\": \"generated_checksum_hash\",\n  \"ip_address\": \"192.168.1.100\",\n  \"mac_address\": \"-\",\n  \"date\": \"2025-01-15\",\n  \"output\": \"json\",\n  \"secret\": \"{{secret_key}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}"]
+            },
+            "description": "Retrieve daily usage statistics"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Spider Module",
+      "item": [
+        {
+          "name": "Delete Cache",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "deleteCache",
+                  "type": "text"
+                },
+                {
+                  "key": "identifire",
+                  "value": "{{identifire}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_ver",
+                  "value": "{{client_ver}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/https://www.example.com/products/item-123",
+              "host": ["{{base_url}}"],
+              "path": ["https:", "", "www.example.com", "products", "item-123"]
+            },
+            "description": "Remove cached content for a specific URL"
+          },
+          "response": []
+        },
+        {
+          "name": "Purge Cache",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "purge",
+                  "type": "text"
+                },
+                {
+                  "key": "identifire",
+                  "value": "{{identifire}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_ver",
+                  "value": "{{client_ver}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/https://{{identifire}}",
+              "host": ["{{base_url}}"],
+              "path": ["https:", "", "{{identifire}}"]
+            },
+            "description": "Clear all cached content for the domain"
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Customer Orders",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "fetchCustomerOrders",
+                  "type": "text"
+                },
+                {
+                  "key": "identifire",
+                  "value": "{{identifire}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_ver",
+                  "value": "{{client_ver}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/https://{{identifire}}",
+              "host": ["{{base_url}}"],
+              "path": ["https:", "", "{{identifire}}"]
+            },
+            "description": "Retrieve customer order information"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Warmup Cache Status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "x-tts-module",
+                "value": "SPIDER"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "getWarmupCacheStatus",
+                  "type": "text"
+                },
+                {
+                  "key": "identifire",
+                  "value": "{{identifire}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_ver",
+                  "value": "{{client_ver}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/https://{{identifire}}",
+              "host": ["{{base_url}}"],
+              "path": ["https:", "", "{{identifire}}"]
+            },
+            "description": "Check cache warmup status"
+          },
+          "response": []
+        },
+        {
+          "name": "Spider Health Check",
+          "request": {
+            "method": "HEAD",
+            "header": [
+              {
+                "key": "x-no-cache",
+                "value": "TRUE"
+              }
+            ],
+            "url": {
+              "raw": "https://spider.services.utility-server.com/https://www.example.com/products",
+              "protocol": "https",
+              "host": ["spider", "services", "utility-server", "com"],
+              "path": ["https:", "", "www.example.com", "products"]
+            },
+            "description": "Check health and availability of cached URL"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sitemap Management",
+      "item": [
+        {
+          "name": "Add Sitemap",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "addSitemap",
+                  "type": "text"
+                },
+                {
+                  "key": "identifire",
+                  "value": "{{identifire}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_ver",
+                  "value": "{{client_ver}}",
+                  "type": "text"
+                },
+                {
+                  "key": "sitemap",
+                  "value": "https://www.example.com/sitemap.xml",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}"]
+            },
+            "description": "Register a new sitemap XML file"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Sitemap",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "updateSitemap",
+                  "type": "text"
+                },
+                {
+                  "key": "identifire",
+                  "value": "{{identifire}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_ver",
+                  "value": "{{client_ver}}",
+                  "type": "text"
+                },
+                {
+                  "key": "sitemap",
+                  "value": "https://www.example.com/sitemap-updated.xml",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}"]
+            },
+            "description": "Update or replace an existing sitemap"
+          },
+          "response": []
+        },
+        {
+          "name": "Update TTL",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "User-Agent",
+                "value": "TTS-Utility-Client/{{client_ver}}"
+              },
+              {
+                "key": "session-id",
+                "value": "{{session_id}}"
+              },
+              {
+                "key": "member-email",
+                "value": "{{member_email}}"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "action",
+                  "value": "updateTTL",
+                  "type": "text"
+                },
+                {
+                  "key": "identifire",
+                  "value": "{{identifire}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_ver",
+                  "value": "{{client_ver}}",
+                  "type": "text"
+                },
+                {
+                  "key": "ttl",
+                  "value": "60",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/{{identifire}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{identifire}}"]
+            },
+            "description": "Set cache expiration time in minutes"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

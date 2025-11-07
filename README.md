@@ -31,6 +31,13 @@ This folder contains comprehensive API documentation for Utility Server's servic
 
 Complete API reference for the TTS Utility Server, including:
 
+### 📥 Developer Tools
+
+- **[OpenAPI/Swagger Specification](https://apis.utility-server.com/openapi.yaml)** - Import into Swagger UI or any OpenAPI-compatible tool
+- **[Postman Collection](https://apis.utility-server.com/postman_collection.json)** - Ready-to-import Postman collection with all endpoints
+
+### API Endpoints Overview
+
 - **Authentication & Session Management** (4 endpoints)
   - Member login/logout
   - Password reset

@@ -1,0 +1,803 @@
+openapi: 3.0.3
+info:
+  title: TTS Utility Server API
+  description: |
+    Comprehensive API for Utility Server's web performance optimization services including SPIDER (prerendering), RHINO (edge caching), and MARLIN (image optimization).
+    
+    **Product of DNS Stack Private Limited**
+    - Website: https://www.dnsstack.com
+    - Documentation: https://apis.utility-server.com/
+    - Legal: https://documents.utility-server.com/
+  version: 4.21.04
+  contact:
+    name: Utility Server Support
+    email: support@utility-server.com
+    url: https://www.dnsstack.com
+  license:
+    name: Proprietary
+    url: https://documents.utility-server.com/TERMS_AND_CONDITIONS.html
+
+servers:
+  - url: https://prod.services.utility-server.com/{identifire}
+    description: Production Server
+    variables:
+      identifire:
+        default: www.example.com
+        description: Your client identifier (domain)
+  - url: http://btv.localhost:3000/{identifire}
+    description: Development Server
+    variables:
+      identifire:
+        default: www.example.com
+        description: Your client identifier (domain)
+  - url: https://spider.services.utility-server.com
+    description: Spider Module (Production)
+
+tags:
+  - name: Authentication
+    description: Session management and user authentication
+  - name: User Management
+    description: User information and management
+  - name: Key Management
+    description: Access and secret key rotation
+  - name: Logging
+    description: Real-time logs and monitoring
+  - name: Statistics
+    description: Usage statistics and analytics
+  - name: Spider Module
+    description: Cache management and prerendering
+  - name: Sitemap
+    description: Sitemap management and TTL configuration
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /{identifire}/customers/member_login:
+    post:
+      tags:
+        - Authentication
+      summary: Member Login
+      description: Authenticate a user and create a new session
+      operationId: memberLogin
+      parameters:
+        - $ref: '#/components/parameters/Identifire'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email_id
+                - password
+                - identifire
+                - client_ver
+                - checksum
+                - ip_address
+                - mac_address
+              properties:
+                email_id:
+                  type: string
+                  format: email
+                  example: user@example.com
+                password:
+                  type: string
+                  format: password
+                  example: secure_password
+                identifire:
+                  type: string
+                  example: www.example.com
+                secret:
+                  type: string
+                  example: YOUR_SECRET_KEY
+                client_ver:
+                  type: string
+                  example: V4.21.04
+                checksum:
+                  type: string
+                  example: generated_checksum_hash
+                ip_address:
+                  type: string
+                  example: 192.168.1.100
+                mac_address:
+                  type: string
+                  example: "-"
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - email_id
+                - password
+                - identifire
+                - client_ver
+              properties:
+                email_id:
+                  type: string
+                password:
+                  type: string
+                identifire:
+                  type: string
+                secret:
+                  type: string
+                client_ver:
+                  type: string
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session_id:
+                    type: string
+                    example: zO4WlLQLT8fj4rakFbnvX~u92nq4A-fO
+                  user_type:
+                    type: string
+                    example: client
+                  message:
+                    type: string
+                    example: Logged-in successful, inactive session time-out is 43200 minutes.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /{identifire}/customers/reset_password:
+    post:
+      tags:
+        - Authentication
+      summary: Reset Password
+      description: Reset user password and send new password via email
+      operationId: resetPassword
+      parameters:
+        - $ref: '#/components/parameters/Identifire'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - email_id
+                - identifire
+                - client_ver
+              properties:
+                email_id:
+                  type: string
+                  format: email
+                identifire:
+                  type: string
+                secret:
+                  type: string
+                client_ver:
+                  type: string
+      responses:
+        '200':
+          description: Password reset successful
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Password reset successfully, and new password has been emailed to your registered email id.
+
+  /{identifire}/customers/terminate_session:
+    post:
+      tags:
+        - Authentication
+      summary: Terminate Session
+      description: Forcefully terminate an active user session
+      operationId: terminateSession
+      parameters:
+        - $ref: '#/components/parameters/Identifire'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - email_id
+                - password
+                - identifire
+                - client_ver
+              properties:
+                email_id:
+                  type: string
+                password:
+                  type: string
+                identifire:
+                  type: string
+                secret:
+                  type: string
+                client_ver:
+                  type: string
+      responses:
+        '200':
+          description: Session terminated
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Terminated active session, please relogin to continue.
+
+  /{identifire}/customers/member_logout:
+    post:
+      tags:
+        - Authentication
+      summary: Member Logout
+      description: Logout the current user session
+      operationId: memberLogout
+      security:
+        - ApiKeyAuth: []
+        - SessionAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Identifire'
+        - $ref: '#/components/parameters/SessionId'
+        - $ref: '#/components/parameters/MemberEmail'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - identifire
+                - client_ver
+              properties:
+                identifire:
+                  type: string
+                secret:
+                  type: string
+                client_ver:
+                  type: string
+      responses:
+        '200':
+          description: Logout successful
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Logged-out active session, please relogin to continue.
+
+  /{identifire}/customers/get_users:
+    post:
+      tags:
+        - User Management
+      summary: Get Users
+      description: Retrieve user information for authenticated session
+      operationId: getUsers
+      security:
+        - ApiKeyAuth: []
+        - SessionAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Identifire'
+        - $ref: '#/components/parameters/SessionId'
+        - $ref: '#/components/parameters/MemberEmail'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - identifire
+                - client_ver
+              properties:
+                identifire:
+                  type: string
+                secret:
+                  type: string
+                client_ver:
+                  type: string
+      responses:
+        '200':
+          description: User information retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                description: User information object
+
+  /{identifire}/customers/rotate_access_key:
+    post:
+      tags:
+        - Key Management
+      summary: Rotate Access Key
+      description: Generate new access key and invalidate current one
+      operationId: rotateAccessKey
+      security:
+        - ApiKeyAuth: []
+        - SessionAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Identifire'
+        - $ref: '#/components/parameters/SessionId'
+        - $ref: '#/components/parameters/MemberEmail'
+        - $ref: '#/components/parameters/ModuleHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifire
+                - client_ver
+                - checksum
+                - ip_address
+                - mac_address
+              properties:
+                identifire:
+                  type: string
+                client_ver:
+                  type: string
+                checksum:
+                  type: string
+                ip_address:
+                  type: string
+                mac_address:
+                  type: string
+                secret:
+                  type: string
+      responses:
+        '200':
+          description: New access key generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_key:
+                    type: string
+
+  /{identifire}/customers/push_access_key:
+    post:
+      tags:
+        - Key Management
+      summary: Push Access Key
+      description: Update to a specific access key
+      operationId: pushAccessKey
+      security:
+        - ApiKeyAuth: []
+        - SessionAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Identifire'
+        - $ref: '#/components/parameters/SessionId'
+        - $ref: '#/components/parameters/MemberEmail'
+        - $ref: '#/components/parameters/ModuleHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifire
+                - client_ver
+                - checksum
+                - ip_address
+                - mac_address
+                - new_access_key
+              properties:
+                identifire:
+                  type: string
+                client_ver:
+                  type: string
+                checksum:
+                  type: string
+                ip_address:
+                  type: string
+                mac_address:
+                  type: string
+                new_access_key:
+                  type: string
+                secret:
+                  type: string
+      responses:
+        '200':
+          description: Access key updated
+
+  /{identifire}/customers/rotate_secret_key:
+    post:
+      tags:
+        - Key Management
+      summary: Rotate Secret Key
+      description: Generate new secret key and invalidate current one
+      operationId: rotateSecretKey
+      security:
+        - ApiKeyAuth: []
+        - SessionAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Identifire'
+        - $ref: '#/components/parameters/SessionId'
+        - $ref: '#/components/parameters/MemberEmail'
+        - $ref: '#/components/parameters/ModuleHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifire
+                - client_ver
+                - checksum
+                - ip_address
+                - mac_address
+              properties:
+                identifire:
+                  type: string
+                client_ver:
+                  type: string
+                checksum:
+                  type: string
+                ip_address:
+                  type: string
+                mac_address:
+                  type: string
+                secret:
+                  type: string
+      responses:
+        '200':
+          description: New secret key generated
+
+  /{identifire}/customers/push_secret_key:
+    post:
+      tags:
+        - Key Management
+      summary: Push Secret Key
+      description: Update to a specific secret key
+      operationId: pushSecretKey
+      security:
+        - ApiKeyAuth: []
+        - SessionAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Identifire'
+        - $ref: '#/components/parameters/SessionId'
+        - $ref: '#/components/parameters/MemberEmail'
+        - $ref: '#/components/parameters/ModuleHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifire
+                - client_ver
+                - checksum
+                - ip_address
+                - mac_address
+                - new_secret_key
+              properties:
+                identifire:
+                  type: string
+                client_ver:
+                  type: string
+                checksum:
+                  type: string
+                ip_address:
+                  type: string
+                mac_address:
+                  type: string
+                new_secret_key:
+                  type: string
+                secret:
+                  type: string
+      responses:
+        '200':
+          description: Secret key updated
+
+  /{identifire}:
+    post:
+      tags:
+        - Logging
+        - Statistics
+        - Sitemap
+      summary: Multi-purpose Endpoint
+      description: Handles live logs, hit logs, statistics, and sitemap operations based on action parameter
+      operationId: multiPurpose
+      security:
+        - ApiKeyAuth: []
+        - SessionAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Identifire'
+        - $ref: '#/components/parameters/SessionId'
+        - $ref: '#/components/parameters/MemberEmail'
+        - $ref: '#/components/parameters/ModuleHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/LiveLogsRequest'
+                - $ref: '#/components/schemas/HitLogRequest'
+                - $ref: '#/components/schemas/FetchStatsRequest'
+                - $ref: '#/components/schemas/AddSitemapRequest'
+                - $ref: '#/components/schemas/UpdateSitemapRequest'
+                - $ref: '#/components/schemas/UpdateTTLRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/AddSitemapRequest'
+                - $ref: '#/components/schemas/UpdateSitemapRequest'
+                - $ref: '#/components/schemas/UpdateTTLRequest'
+      responses:
+        '200':
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                type: object
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-tts-cc-access-key
+      description: API access key for authentication
+    SessionAuth:
+      type: apiKey
+      in: header
+      name: session-id
+      description: Session ID obtained from login
+
+  parameters:
+    Identifire:
+      name: identifire
+      in: path
+      required: true
+      description: Client identifier (domain)
+      schema:
+        type: string
+        example: www.example.com
+    
+    SessionId:
+      name: session-id
+      in: header
+      required: true
+      description: Session identifier from login
+      schema:
+        type: string
+        example: zO4WlLQLT8fj4rakFbnvX~u92nq4A-fO
+    
+    MemberEmail:
+      name: member-email
+      in: header
+      required: true
+      description: Logged-in user's email
+      schema:
+        type: string
+        format: email
+        example: user@example.com
+    
+    ModuleHeader:
+      name: x-tts-module
+      in: header
+      required: false
+      description: Module identifier
+      schema:
+        type: string
+        enum: [SPIDER, RHINO, MARLIN]
+        example: SPIDER
+
+  schemas:
+    LiveLogsRequest:
+      type: object
+      required:
+        - action
+        - identifire
+        - client_ver
+        - checksum
+        - ip_address
+        - mac_address
+      properties:
+        action:
+          type: string
+          enum: [liveLogs]
+        identifire:
+          type: string
+        client_ver:
+          type: string
+        checksum:
+          type: string
+        ip_address:
+          type: string
+        mac_address:
+          type: string
+        secret:
+          type: string
+        lastId:
+          type: string
+        filters-url:
+          type: string
+        output:
+          type: string
+          enum: [json]
+        limit:
+          type: integer
+        activeModule:
+          type: string
+
+    HitLogRequest:
+      type: object
+      required:
+        - action
+        - identifire
+        - client_ver
+        - checksum
+        - ip_address
+        - mac_address
+        - logDate
+      properties:
+        action:
+          type: string
+          enum: [hitLog]
+        identifire:
+          type: string
+        client_ver:
+          type: string
+        checksum:
+          type: string
+        ip_address:
+          type: string
+        mac_address:
+          type: string
+        logDate:
+          type: string
+          format: date
+          example: "2025-01-15"
+        output:
+          type: string
+          enum: [json]
+        secret:
+          type: string
+
+    FetchStatsRequest:
+      type: object
+      required:
+        - action
+        - identifire
+        - client_ver
+        - checksum
+        - ip_address
+        - mac_address
+      properties:
+        action:
+          type: string
+          enum: [fetchStats]
+        identifire:
+          type: string
+        client_ver:
+          type: string
+        checksum:
+          type: string
+        ip_address:
+          type: string
+        mac_address:
+          type: string
+        secret:
+          type: string
+        month:
+          type: string
+          pattern: '^\d{4}-\d{2}$'
+          example: "2025-01"
+        date:
+          type: string
+          format: date
+          example: "2025-01-15"
+        output:
+          type: string
+          enum: [json]
+
+    AddSitemapRequest:
+      type: object
+      required:
+        - action
+        - identifire
+        - client_ver
+        - sitemap
+      properties:
+        action:
+          type: string
+          enum: [addSitemap]
+        identifire:
+          type: string
+        client_ver:
+          type: string
+        sitemap:
+          type: string
+          format: uri
+        secret:
+          type: string
+
+    UpdateSitemapRequest:
+      type: object
+      required:
+        - action
+        - identifire
+        - client_ver
+        - sitemap
+      properties:
+        action:
+          type: string
+          enum: [updateSitemap]
+        identifire:
+          type: string
+        client_ver:
+          type: string
+        sitemap:
+          type: string
+          format: uri
+        secret:
+          type: string
+
+    UpdateTTLRequest:
+      type: object
+      required:
+        - action
+        - identifire
+        - client_ver
+        - ttl
+      properties:
+        action:
+          type: string
+          enum: [updateTTL]
+        identifire:
+          type: string
+        client_ver:
+          type: string
+        ttl:
+          type: integer
+          minimum: 1
+        secret:
+          type: string
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+
+  responses:
+    BadRequest:
+      description: Bad request - Invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    
+    Unauthorized:
+      description: Unauthorized - Invalid credentials or session
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    
+    Forbidden:
+      description: Forbidden - Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    
+    NotFound:
+      description: Not found - Resource doesn't exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    
+    TooManyRequests:
+      description: Too many requests - Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

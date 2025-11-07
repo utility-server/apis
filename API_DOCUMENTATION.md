@@ -1218,6 +1218,35 @@ When rate limit is exceeded (HTTP 429), wait for the time specified in the `Retr
 
 ---
 
+## Developer Resources
+
+### Import Into Your Tools
+
+**OpenAPI/Swagger Specification:**
+- Download: [openapi.yaml](https://apis.utility-server.com/openapi.yaml)
+- Use with: Swagger UI, Postman, Insomnia, or any OpenAPI 3.0 compatible tool
+
+**Postman Collection:**
+- Download: [postman_collection.json](https://apis.utility-server.com/postman_collection.json)
+- Import into Postman for instant API testing
+- Includes auto-save session variables and test scripts
+
+### How to Use
+
+**Swagger/OpenAPI:**
+1. Download the `openapi.yaml` file
+2. Import into Swagger Editor (https://editor.swagger.io/)
+3. Or use with any OpenAPI-compatible tool
+
+**Postman:**
+1. Download the `postman_collection.json` file
+2. Open Postman → Import → Upload Files
+3. Configure collection variables (`identifire`, `access_key`, etc.)
+4. Login request automatically saves session ID
+5. Start testing!
+
+---
+
 ## Support and Resources
 
 ### Documentation
@@ -1225,6 +1254,8 @@ When rate limit is exceeded (HTTP 429), wait for the time specified in the `Retr
 - **API Version**: 4.21.04
 - **Last Updated**: November 6, 2025
 - **Status Page**: https://status.utility-server.com
+- **OpenAPI Spec**: https://apis.utility-server.com/openapi.yaml
+- **Postman Collection**: https://apis.utility-server.com/postman_collection.json
 
 ### Contact
 
